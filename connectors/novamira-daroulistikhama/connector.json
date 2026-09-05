@@ -1,0 +1,25 @@
+{
+  "name": "novamira-daroulistikhama",
+  "displayName": "Novamira — Daroulistikhama",
+  "description": "OAuth-authenticated Novamira MCP endpoint for daroulistikhama.com (WordPress REST namespace mcp/novamira).",
+  "site": "https://daroulistikhama.com",
+  "transport": "http",
+  "protocol": "mcp",
+  "endpoints": {
+    "oauth": "https://daroulistikhama.com/wp-json/mcp/novamira-oauth",
+    "applicationPassword": "https://daroulistikhama.com/wp-json/mcp/novamira"
+  },
+  "auth": {
+    "type": "oauth2",
+    "flow": "authorization_code_pkce",
+    "dynamicClientRegistration": true,
+    "discovery": [
+      "https://daroulistikhama.com/.well-known/oauth-protected-resource",
+      "https://daroulistikhama.com/.well-known/oauth-authorization-server"
+    ],
+    "alternative": {
+      "type": "basic",
+      "note": "WordPress Application Password (user + application password) against the non-OAuth endpoint."
+    }
+  }
+}
