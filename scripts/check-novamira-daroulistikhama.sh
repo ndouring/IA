@@ -22,7 +22,10 @@ say "OAuth discovery"
 for path in /.well-known/oauth-protected-resource /.well-known/oauth-authorization-server; do
   code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$SITE$path")
   case "$code" in
-    200) ok "$path -> 200" ;;
+    200)
+      ok "$path -> 200"
+      curl -sS --max-time 20 "$SITE$path" | sed 's/^/    /'
+      ;;
     404) printf '  warn  %s -> 404 (client may fall back to the resource metadata header)\n' "$path" ;;
     *)   bad "$path -> $code" ;;
   esac
@@ -35,7 +38,15 @@ hdrs=$(curl -sS -D - -o /dev/null --max-time 20 -X POST "$OAUTH_URL" \
 code=$(printf '%s' "$hdrs" | awk 'toupper($0) ~ /^HTTP\// {c=$2} END {print c}')
 if [ "$code" = "401" ]; then
   ok "POST $OAUTH_URL -> 401"
-  printf '%s' "$hdrs" | grep -i '^www-authenticate:' || bad "no WWW-Authenticate header on the 401"
+  challenge=$(printf '%s' "$hdrs" | grep -i '^www-authenticate:')
+  if [ -n "$challenge" ]; then
+    printf '    %s\n' "$challenge"
+    printf '%s' "$challenge" | grep -qi 'resource_metadata=' \
+      && ok 'WWW-Authenticate carries resource_metadata' \
+      || bad 'WWW-Authenticate has no resource_metadata parameter'
+  else
+    bad "no WWW-Authenticate header on the 401"
+  fi
 else
   bad "POST $OAUTH_URL -> $code (expected 401 for an unauthenticated request)"
 fi
