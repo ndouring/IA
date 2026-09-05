@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "novamira-daroulistikhama": {
+      "type": "http",
+      "url": "https://daroulistikhama.com/wp-json/mcp/novamira-oauth"
+    }
+  }
+}

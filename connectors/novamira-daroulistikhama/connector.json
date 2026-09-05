@@ -1,0 +1,52 @@
+{
+  "name": "novamira-daroulistikhama",
+  "displayName": "Novamira — Daroulistikhama",
+  "description": "OAuth-authenticated Novamira MCP endpoint for daroulistikhama.com (WordPress REST namespace mcp/novamira).",
+  "site": "https://daroulistikhama.com",
+  "transport": "http",
+  "protocol": "mcp",
+  "endpoints": {
+    "oauth": "https://daroulistikhama.com/wp-json/mcp/novamira-oauth",
+    "applicationPassword": "https://daroulistikhama.com/wp-json/mcp/novamira"
+  },
+  "auth": {
+    "type": "oauth2",
+    "issuer": "https://daroulistikhama.com",
+    "flow": "authorization_code_pkce",
+    "codeChallengeMethods": ["S256"],
+    "tokenEndpointAuthMethods": ["none"],
+    "dynamicClientRegistration": true,
+    "scopes": ["mcp"],
+    "grantTypes": [
+      "authorization_code",
+      "refresh_token",
+      "urn:ietf:params:oauth:grant-type:device_code"
+    ],
+    "discovery": [
+      "https://daroulistikhama.com/.well-known/oauth-protected-resource",
+      "https://daroulistikhama.com/.well-known/oauth-authorization-server"
+    ],
+    "endpoints": {
+      "authorization": "https://daroulistikhama.com/wp-admin/admin.php?page=novamira-oauth-authorize",
+      "token": "https://daroulistikhama.com/wp-json/novamira/v1/oauth/token",
+      "registration": "https://daroulistikhama.com/wp-json/novamira/v1/oauth/register",
+      "revocation": "https://daroulistikhama.com/wp-json/novamira/v1/oauth/revoke",
+      "introspection": "https://daroulistikhama.com/wp-json/novamira/v1/oauth/introspect",
+      "deviceAuthorization": "https://daroulistikhama.com/wp-json/novamira/v1/oauth/device"
+    },
+    "unauthenticatedChallenge": {
+      "status": 401,
+      "wwwAuthenticate": "Bearer resource_metadata=\"https://daroulistikhama.com/.well-known/oauth-protected-resource\", scope=\"mcp\""
+    },
+    "alternative": {
+      "type": "basic",
+      "note": "WordPress Application Password (user + application password) against the non-OAuth endpoint."
+    }
+  },
+  "verifiedAgainst": {
+    "site": "https://africamedicalink.com",
+    "novamiraVersion": "1.12.1",
+    "restApiVersion": 1,
+    "note": "Endpoint shape, discovery documents and the 401 challenge were confirmed on a live Novamira install of the same plugin version; daroulistikhama.com itself was not reachable from the authoring environment."
+  }
+}
