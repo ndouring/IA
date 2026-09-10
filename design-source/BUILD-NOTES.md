@@ -213,3 +213,45 @@ le menu perd son trait et l'en-tête cesse d'être collant, rien d'autre ne boug
   reproduit le design. En revanche le composant HTML d'Astra n'expose aucun
   réglage de typographie : les codes s'affichent à 15 px dans la police du
   thème, au lieu de Space Grotesk 12 px 600.
+
+## Formulaire de contact (WPForms Lite)
+
+L'élément `e-form` d'Elementor 4 n'est qu'une promotion Pro (`is_pro_promotion`),
+pas un formulaire fonctionnel. Le formulaire est donc bâti avec WPForms Lite et
+posé dans l'emplacement réservé via le **widget Elementor `wpforms`** fourni par
+le plugin — pas un shortcode collé à la main.
+
+**Formulaire** : post `wpforms` id **210**, « Contact DEPRICE ».
+
+| Champ | Type | Obligatoire | Placeholder |
+|---|---|---|---|
+| Nom complet | `name` (format simple) | oui | Votre nom |
+| Email | `email` | oui | vous@exemple.com |
+| Sujet | `text` | non | Ex : Étude actuarielle, formation, devis… |
+| Message | `textarea` | oui | Décrivez votre besoin |
+
+Nom et Email sont côte à côte via les classes `wpforms-one-half wpforms-first`.
+
+**Destinataire** : `{admin_email}`, soit le compte admin du site. L'adresse n'est
+pas écrite en dur — si le compte admin change, la notification suit.
+Expéditeur `contact@deprice.sn` (domaine du site, pour ne pas casser SPF),
+`Reply-To` sur l'e-mail du visiteur.
+
+**Anti-spam** : `antispam_v3`, le pot de miel moderne de WPForms. Il injecte un
+champ supplémentaire (id 5) à position et libellé aléatoires, imitant les vrais
+champs, masqué au visiteur. Aucun service tiers, aucune clé d'API, aucun captcha
+à résoudre pour l'utilisateur.
+
+**Style** : entièrement réglé sur le widget Elementor, qui émet des variables CSS
+scopées à l'élément (`--wpforms-*`). Aucun CSS écrit. Attention : les
+préréglages `fieldSize` / `labelSize` / `buttonSize` doivent rester **vides**,
+sinon `get_size_css_vars()` écrase les valeurs explicites de taille.
+
+Le conteneur WPForms reste transparent et sans bordure : le cadre gris vient de
+la classe globale Elementor `form-slot`.
+
+### À prévoir
+
+Aucun plugin SMTP n'est installé : WordPress passe par `mail()` de PHP. L'envoi
+est accepté par le serveur, mais la remise vers une boîte Gmail depuis un
+hébergement mutualisé est fragile (SPF / DKIM). **WP Mail SMTP** est recommandé.
