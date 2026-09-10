@@ -321,3 +321,47 @@ Trois garde-fous :
 
 Le préfixe est préservé pendant le comptage (`+0` → `+50`), et la valeur exacte
 est réécrite à la fin pour éviter tout arrondi.
+
+## Vérification tablette
+
+### Le défaut trouvé : l'en-tête débordait à 1024 px
+
+Astra bascule sur l'en-tête mobile en dessous de son **breakpoint tablette**,
+921 px par défaut. Or la barre desktop — logo, 6 entrées de menu (dont
+« Formations & Certifications »), sélecteur FR / EN et bouton — réclame environ
+**1025 px**. Entre 922 et 1025 px, elle débordait donc. C'est exactement la
+largeur d'un iPad en paysage (1024 px).
+
+Corrigé dans `mu-plugins/deprice-header-breakpoint.php` : le seuil passe à
+1100 px.
+
+> Deux filtres sont nécessaires, et c'est le piège :
+> `astra_header_break_point` ne suffit pas. Quand le constructeur d'en-tête est
+> actif, le CSS est généré à partir de **`astra_get_tablet_breakpoint()`**,
+> filtrable par `astra_tablet_breakpoint`. Le premier filtre reste requis : il
+> pilote la valeur passée au JavaScript (`astra.break_point`), qui pose la
+> classe `ast-header-break-point`. Sans les deux, CSS et JS se désynchronisent.
+
+Vérifié : 34 media queries à 1100 px, plus aucune à 921 px,
+`astra.break_point = 1100`.
+
+### Grilles de 4 éléments
+
+`grid-cards`, `grid-cards-220` et `grid-levels` tombaient en 3 colonnes aux
+largeurs tablette, laissant un élément seul sur la ligne suivante. Passées en
+`repeat(2,1fr)` en tablette : deux rangées de deux.
+
+### État vérifié
+
+| Élément | Tablette |
+|---|---|
+| En-tête | version mobile sous 1100 px : logo, FR / EN, hamburger |
+| Pied de page | 2 colonnes (`2-equal`) |
+| Grilles de 4 | 2 × 2 |
+| `grid-split`, `grid-2-56` | 2 colonnes, gouttière réduite à 40 px |
+| Titres, sections | variantes tablette présentes sur les 6 pages |
+| Largeurs fixes > 700 px | aucune — pas de débordement horizontal |
+
+Le bouton « Demander un devis » n'est pas dans la barre mobile, donc absent
+en dessous de 1100 px. C'est conforme à `Header.dc.html`, où le mobile expose
+« Contact → » dans le menu déroulant plutôt qu'un bouton dans la barre.
