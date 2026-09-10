@@ -250,8 +250,31 @@ sinon `get_size_css_vars()` écrase les valeurs explicites de taille.
 Le conteneur WPForms reste transparent et sans bordure : le cadre gris vient de
 la classe globale Elementor `form-slot`.
 
-### À prévoir
+### Acheminement des e-mails
 
-Aucun plugin SMTP n'est installé : WordPress passe par `mail()` de PHP. L'envoi
-est accepté par le serveur, mais la remise vers une boîte Gmail depuis un
-hébergement mutualisé est fragile (SPF / DKIM). **WP Mail SMTP** est recommandé.
+**WP Mail SMTP 4.9.0** est installé et actif. Expéditeur forcé sur
+`contact@deprice.sn` avec `DEPRICE Consulting` comme nom, et `Return-Path`
+aligné dessus.
+
+Le SPF du domaine autorise déjà ce serveur :
+`v=spf1 +mx +a +ip4:104.247.74.88 +include:relay.mailchannels.net +ip4:192.249.112.17 ~all`
+— le `+a` couvre l'IP du site (205.134.255.124), donc un envoi depuis
+`contact@deprice.sn` passe l'authentification SPF.
+
+Le serveur SMTP du domaine (Exim, cPanel `res354.servconfig.com`) répond sur les
+ports 465, 587 et 25. La configuration est pré-remplie :
+
+| Réglage | Valeur |
+|---|---|
+| Hôte | `mail.deprice.sn` |
+| Port | 465 |
+| Chiffrement | SSL |
+| Authentification | oui |
+| Identifiant | `contact@deprice.sn` |
+| Mot de passe | **à saisir par le propriétaire du site** |
+
+Tant que le mot de passe n'est pas renseigné, le mailer reste sur **PHP mail**
+(`mailer = mail`), qui fonctionne, plutôt que sur SMTP qui échouerait sans
+identifiants. Une fois le mot de passe saisi dans
+Réglages → WP Mail SMTP, basculer le mailer sur « Other SMTP » active l'envoi
+authentifié.
