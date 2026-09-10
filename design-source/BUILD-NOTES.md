@@ -149,11 +149,13 @@ natifs d'Astra, pilotés par l'option `astra-settings` et quelques `theme_mod`.
 | `header-desktop-items` | logo à gauche ; `menu-1` + `button-1` à droite |
 | `custom_logo` (theme_mod) | 197 — `logo-deprice.png`, 400×301, converti CMYK → sRGB |
 | `ast-header-responsive-logo-width` | 61 / 56 / 50 px |
-| `display-site-title`, `display-site-tagline` | `false` |
+| `display-site-title-responsive`, `display-site-tagline-responsive` | `false` sur les 3 appareils — ce sont **ces** clés qu'Astra lit (`astra_logo()`), pas `display-site-title` ni les `theme_mod` du même nom |
 | `hb-header-main-sep` / `-color` | 1 px `#E8E8E4` |
 | `header-menu1-*` | Inter 500, 14 px, `#000000`, survol et page active `#7ED321` |
 | `header-button1-*` | « Demander un devis » → `/contact/`, fond `#121212`, survol `#7ED321`, rayon 2 px, Space Grotesk 600 |
 | `site-content-width` | 1240 |
+| `header-html-1` | `[gtranslate]` — sélecteur FR / EN, placé entre le menu et le bouton |
+| `header-html-1color` / `1link-color` / `1link-h-color` | `#121212` / `#B5B5B0` / `#121212` — noter l'absence de tiret avant `color` dans ces clés Astra |
 
 ### Pied de page
 
@@ -186,5 +188,10 @@ qu'Astra sait colorer) :
   `text-transform` du titre de widget. Les libellés sont donc saisis en
   majuscules dans les widgets. Le `letter-spacing: 0.06em` du design n'est pas
   reproductible sans CSS.
-- **Sélecteur FR / EN** : le composant natif d'Astra est Pro. Le plugin
-  GTranslate est installé sur le site et peut le fournir — à câbler si voulu.
+- **Sélecteur FR / EN** : fourni par GTranslate (`widget_look = lang_codes`,
+  `incl_langs = ['fr','en']`, `floating_language_selector = no`), inséré dans
+  l'en-tête via le composant HTML 1 d'Astra. La langue courante sort en texte
+  simple (`#121212`) et l'autre en lien (`#B5B5B0`, survol `#121212`), ce qui
+  reproduit le design. En revanche le composant HTML d'Astra n'expose aucun
+  réglage de typographie : les codes s'affichent à 15 px dans la police du
+  thème, au lieu de Space Grotesk 12 px 600.
