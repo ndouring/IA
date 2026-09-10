@@ -133,3 +133,58 @@ Réglages appliqués à chaque page : template `elementor_header_footer`
 (Elementor pleine largeur), `ast-site-content-layout=full-width-container`,
 `site-content-style=unboxed`, `site-sidebar-layout=no-sidebar`,
 `site-post-title=disabled`. En-tête et pied de page restent gérés par le thème.
+
+## En-tête et pied de page (Astra Customizer)
+
+Le Theme Builder d'Elementor est réservé à Elementor Pro, absent du site.
+L'en-tête et le pied de page sont donc construits avec les constructeurs
+natifs d'Astra, pilotés par l'option `astra-settings` et quelques `theme_mod`.
+
+**Page d'accueil du site** : `show_on_front = page`, `page_on_front = 81`.
+
+### En-tête
+
+| Réglage | Valeur |
+|---|---|
+| `header-desktop-items` | logo à gauche ; `menu-1` + `button-1` à droite |
+| `custom_logo` (theme_mod) | 197 — `logo-deprice.png`, 400×301, converti CMYK → sRGB |
+| `ast-header-responsive-logo-width` | 61 / 56 / 50 px |
+| `display-site-title`, `display-site-tagline` | `false` |
+| `hb-header-main-sep` / `-color` | 1 px `#E8E8E4` |
+| `header-menu1-*` | Inter 500, 14 px, `#000000`, survol et page active `#7ED321` |
+| `header-button1-*` | « Demander un devis » → `/contact/`, fond `#121212`, survol `#7ED321`, rayon 2 px, Space Grotesk 600 |
+| `site-content-width` | 1240 |
+
+### Pied de page
+
+| Réglage | Valeur |
+|---|---|
+| `footer-desktop-items` | rangée haute : `widget-1..4` ; rangée basse : `copyright` |
+| `hba-footer-column` / `-layout` | 4 — `4-equal` / `2-equal` / `full` |
+| Fonds (`hba-`, `hbb-`, `hb-footer-bg-obj-responsive`) | `#111113` |
+| `hbb-footer-top-border-color` | `#2A2A2C` |
+| `footer-widget-N-title-color` | `#7C7C78`, Space Grotesk 600, 13 px |
+| `footer-widget-N-color` | `#A5A5A1` (colonne 1) / `#D5D5D1` (2 à 4) |
+| `footer-widget-N-link-color` / `-link-h-color` | `#D5D5D1` / `#7ED321` |
+| `footer-copyright-*` | aligné à droite, `#7C7C78`, 12 px |
+
+Contenu des colonnes (widgets classiques, pour obtenir le `<h2 class="widget-title">`
+qu'Astra sait colorer) :
+
+1. `media_image-2` — logo blanc (media 198) en 56×42, lien vers l'accueil — puis
+   `text-2`, la baseline. Pas de titre.
+2. `nav_menu-2` — titre « NAVIGATION », menu 2.
+3. `text-3` — titre « CONTACT », e-mail et téléphones en liens `mailto:` / `tel:`.
+4. `text-4` — titre « BUREAU DE DAKAR », adresse.
+
+### Écarts assumés par rapport au design
+
+- **En-tête collant** : Astra gratuit ne le propose pas (Astra Pro).
+- **Soulignement vert sous l'onglet actif** : non réglable sans CSS. L'état actif
+  est rendu par la couleur verte du libellé.
+- **Titres de colonnes en majuscules** : Astra gratuit ne génère pas le
+  `text-transform` du titre de widget. Les libellés sont donc saisis en
+  majuscules dans les widgets. Le `letter-spacing: 0.06em` du design n'est pas
+  reproductible sans CSS.
+- **Sélecteur FR / EN** : le composant natif d'Astra est Pro. Le plugin
+  GTranslate est installé sur le site et peut le fournir — à câbler si voulu.
