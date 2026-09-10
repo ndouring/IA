@@ -152,7 +152,9 @@ natifs d'Astra, pilotés par l'option `astra-settings` et quelques `theme_mod`.
 | `display-site-title-responsive`, `display-site-tagline-responsive` | `false` sur les 3 appareils — ce sont **ces** clés qu'Astra lit (`astra_logo()`), pas `display-site-title` ni les `theme_mod` du même nom |
 | `hb-header-main-sep` / `-color` | 1 px `#E8E8E4` |
 | `header-menu1-*` | Inter 500, 14 px, `#000000`, survol et page active `#7ED321` |
-| `header-button1-*` | « Demander un devis » → `/contact/`, fond `#121212`, survol `#7ED321`, rayon 2 px, Space Grotesk 600 |
+| `header-button1-*` | « Demander un devis » → `/contact/`, fond `#121212`, survol `#7ED321`, Space Grotesk 600 / 14 px |
+| `header-button1-border-radius-fields` | 2 px — **pas** `header-button1-border-radius`, qui existe mais n'est pas lue ; le défaut d'Astra est 40 px (pilule) |
+| `section-hb-button-1-padding` | 11 / 22 px — **pas** `header-button1-padding`, qui existe mais n'est pas lue ; sans elle, le bouton hérite du 15 / 30 global |
 | `site-content-width` | 1240 |
 | `header-html-1` | `[gtranslate]` — sélecteur FR / EN, placé entre le menu et le bouton |
 | `header-html-1color` / `1link-color` / `1link-h-color` | `#121212` / `#B5B5B0` / `#121212` — noter l'absence de tiret avant `color` dans ces clés Astra |
@@ -179,11 +181,25 @@ qu'Astra sait colorer) :
 3. `text-3` — titre « CONTACT », e-mail et téléphones en liens `mailto:` / `tel:`.
 4. `text-4` — titre « BUREAU DE DAKAR », adresse.
 
-### Écarts assumés par rapport au design
+### La seule feuille de CSS du projet
 
-- **En-tête collant** : Astra gratuit ne le propose pas (Astra Pro).
-- **Soulignement vert sous l'onglet actif** : non réglable sans CSS. L'état actif
-  est rendu par la couleur verte du libellé.
+Deux éléments de la maquette n'ont aucun réglage équivalent dans Astra gratuit.
+À la demande explicite du client, ils sont traités dans
+**Apparence → Personnaliser → CSS additionnel** (post `custom_css`, id 205) —
+c'est le seul CSS écrit à la main du projet, tout le reste passe par les
+réglages Astra et par les classes / variables globales Elementor.
+
+1. **Trait vert sous l'onglet actif** — un `::after` de 2 px sur
+   `.current-menu-item > .menu-link`, encadré à 14 px pour suivre le padding
+   du lien.
+2. **En-tête collant** — `position: sticky` sur `#masthead`, avec le décalage
+   de 32 px quand la barre d'admin est affichée.
+
+Pour revenir à un site sans CSS écrit à la main, il suffit de vider ce champ :
+le menu perd son trait et l'en-tête cesse d'être collant, rien d'autre ne bouge.
+
+### Écarts restants par rapport au design
+
 - **Titres de colonnes en majuscules** : Astra gratuit ne génère pas le
   `text-transform` du titre de widget. Les libellés sont donc saisis en
   majuscules dans les widgets. Le `letter-spacing: 0.06em` du design n'est pas
