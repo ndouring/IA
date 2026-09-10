@@ -40,17 +40,54 @@ Ajoutés à la racine : `X-Content-Type-Options: nosniff`,
 Ils divulguaient la version exacte de WordPress. Supprimés, et bloqués en
 `.htaccess` pour qu'une future mise à jour ne les réintroduise pas.
 
-## Restant — décision du propriétaire
+## Corrigé — second passage (à la demande du propriétaire)
 
-| Point | Gravité | Remarque |
-|---|---|---|
-| Énumération des comptes | moyen | `/wp-json/wp/v2/users` et `/?author=1` révèlent l'identifiant `deprice` |
-| Aucune protection anti-force brute | moyen | `wp-login.php` accepte un nombre illimité de tentatives |
-| Édition de fichiers depuis l'admin | moyen | `DISALLOW_FILE_EDIT` non défini : un compte admin compromis peut écrire du PHP |
-| Extensions et thèmes inutilisés | faible | Akismet et Hello Dolly inactifs, 4 thèmes par défaut |
-| HSTS absent | faible | Volontairement non activé : difficilement réversible (mis en cache par les navigateurs) |
-| Préfixe de table `wp_` | faible | Valeur par défaut |
-| `uploads/` en 0775 | faible | Inscriptible par le groupe |
+### Énumération des comptes
+
+`/wp-json/wp/v2/users` listait les comptes et `/?author=1` redirigeait vers
+`/author/deprice/`, révélant l'identifiant admin.
+
+Extension *must-use* `mu-plugins/deprice-hardening.php` : endpoint REST retiré
+pour les requêtes **non authentifiées** uniquement, redirection des URL
+d'auteur vers l'accueil, message de connexion générique.
+
+> Le hook `template_redirect` est enregistré en **priorité 0** : la redirection
+> canonique de WordPress s'exécute en priorité 10 et prenait la main avant.
+>
+> Les requêtes authentifiées sont épargnées, donc MCP Adapter et Novamira
+> fonctionnent normalement.
+
+Vérifié : `/wp-json/wp/v2/users` → 404, `/?author=1` et `/author/deprice/` →
+301 vers l'accueil.
+
+### Force brute
+
+**Limit Login Attempts Reloaded 3.3.8** : 4 tentatives, blocage 20 min, puis
+24 h après 3 blocages. Mode local, sans service tiers.
+
+### Édition de fichiers depuis l'admin
+
+`DISALLOW_FILE_EDIT` ajouté à `wp-config.php`. Un compte admin compromis ne
+peut plus écrire de PHP depuis le tableau de bord. Sans effet sur Novamira, qui
+écrit côté serveur.
+
+### Code inutilisé supprimé
+
+Extensions Akismet et Hello Dolly, thèmes Twenty Twenty-Two/Three/Four.
+Twenty Twenty-Five conservé comme thème de secours.
+
+### HSTS
+
+`Strict-Transport-Security: max-age=31536000; includeSubDomains`.
+
+> À savoir : c'est mis en cache par les navigateurs pour un an. En cas de
+> problème de certificat, retirer l'en-tête ne suffira pas à débloquer
+> immédiatement les visiteurs déjà venus.
+
+### Reste ouvert, faible gravité
+
+Préfixe de table `wp_` (défaut) et `uploads/` en 0775 (inscriptible par le
+groupe). Aucun des deux n'est exploitable seul sur cet hébergement mono-compte.
 
 ## Le point à connaître : Novamira
 
