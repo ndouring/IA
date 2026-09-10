@@ -300,3 +300,24 @@ Tant que le mot de passe n'est pas renseigné, le mailer reste sur **PHP mail**
 identifiants. Une fois le mot de passe saisi dans
 Réglages → WP Mail SMTP, basculer le mailer sur « Other SMTP » active l'envoi
 authentifié.
+
+## Compteurs animés
+
+Les chiffres clés s'animent au défilement, sur l'accueil (`stat-value`) et sur
+À propos (`stat-value-32`). Elementor v4 atomique n'offre rien de natif pour
+ça sans Pro, et le widget Counter de la v3 aurait imposé son propre style à la
+place des classes globales. C'est donc une extension *must-use* :
+`mu-plugins/deprice-counters.php`, un script en ligne d'environ 1 Ko.
+
+Trois garde-fous :
+
+- **Les vrais chiffres restent dans le HTML.** Le script ne les remet à zéro
+  qu'après avoir vérifié qu'il peut animer. Sans JavaScript, ou pour un moteur
+  de recherche, `+50` reste `+50`.
+- **`prefers-reduced-motion` est respecté** : aucune animation pour qui a
+  demandé à en être dispensé.
+- **Déclenchement au défilement** via `IntersectionObserver`, seuil 40 %, une
+  seule fois par élément.
+
+Le préfixe est préservé pendant le comptage (`+0` → `+50`), et la valeur exacte
+est réécrite à la fin pour éviter tout arrondi.
