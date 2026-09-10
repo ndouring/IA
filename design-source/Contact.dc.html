@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #ffffff; }
+    a:hover { opacity: 0.72; }
+    input::placeholder, textarea::placeholder { color: #a5a5a1; }
+  </style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;color:#121212" data-screen-label="Contact">
+  <dc-import name="Header" current="contact" hint-size="100%,76px"></dc-import>
+
+  <section style="background:#111113;color:#ffffff;padding:88px 28px 64px" data-screen-label="Hero">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#7ED321;margin-bottom:16px">Contact</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:700;margin:0 0 16px;line-height:1.15">Parlons de votre projet.</h1>
+      <p style="font-size:17px;color:#c5c5c1;margin:0">Une consultation personnalisée pour vous. Votre succès commence par un premier échange.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:72px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:56px" data-screen-label="Formulaire et coordonnees">
+    <div>
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#7c7c76;margin-bottom:8px">Email</div>
+          <a href="mailto:contact@deprice.sn" style="font-size:17px;color:#121212;text-decoration:none;font-weight:600">contact@deprice.sn</a>
+        </div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#7c7c76;margin-bottom:8px">Téléphone</div>
+          <div style="font-size:17px;font-weight:600">(+221) 32 824 41 75</div>
+          <div style="font-size:17px;font-weight:600">(+221) 77 120 22 98</div>
+        </div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#7c7c76;margin-bottom:8px">Web</div>
+          <div style="font-size:17px;font-weight:600">www.deprice.sn</div>
+        </div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#7c7c76;margin-bottom:8px">Adresse</div>
+          <div style="font-size:17px;font-weight:600;line-height:1.5">VDN - Liberté 6 Extension<br/>Dakar, Sénégal</div>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{submitted}}" hint-placeholder-val="{{false}}">
+      <div style="background:#f7f7f5;border:1px solid #eaeae5;border-radius:4px;padding:44px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:14px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#7ED321;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#111113">✓</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700">Merci, votre message a été envoyé.</div>
+        <div style="font-size:14px;color:#6a6a64">Nous vous répondrons dans les plus brefs délais.</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{notSubmitted}}" hint-placeholder-val="{{true}}">
+      <form onSubmit="{{handleSubmit}}" style="background:#f7f7f5;border:1px solid #eaeae5;border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
+          <div>
+            <label style="display:block;font-size:12px;font-family:'Space Grotesk',sans-serif;color:#55565c;margin-bottom:6px">Nom complet</label>
+            <input required="{{true}}" type="text" placeholder="Votre nom" style="width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid #d9d9d3;border-radius:2px;font-size:14px;font-family:'Inter',sans-serif;background:#ffffff"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-family:'Space Grotesk',sans-serif;color:#55565c;margin-bottom:6px">Email</label>
+            <input required="{{true}}" type="email" placeholder="vous@exemple.com" style="width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid #d9d9d3;border-radius:2px;font-size:14px;font-family:'Inter',sans-serif;background:#ffffff"/>
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-family:'Space Grotesk',sans-serif;color:#55565c;margin-bottom:6px">Sujet</label>
+          <input type="text" placeholder="Ex : Étude actuarielle, formation, devis..." style="width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid #d9d9d3;border-radius:2px;font-size:14px;font-family:'Inter',sans-serif;background:#ffffff"/>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-family:'Space Grotesk',sans-serif;color:#55565c;margin-bottom:6px">Message</label>
+          <textarea required="{{true}}" placeholder="Décrivez votre besoin" rows="5" style="width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid #d9d9d3;border-radius:2px;font-size:14px;font-family:'Inter',sans-serif;background:#ffffff;resize:vertical"></textarea>
+        </div>
+        <button type="submit" style="background:#111113;color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 26px;border:none;border-radius:2px;cursor:pointer;margin-top:4px">Envoyer le message</button>
+      </form>
+    </sc-if>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:0 28px 72px" data-screen-label="Mentions legales">
+    <div style="border-top:1px solid #eee;padding-top:24px;font-size:13px;color:#8a8a86">RC : SN-DKR-2018-B-14602 &nbsp;·&nbsp; NINEA : 006858742 2E2 &nbsp;·&nbsp; SUARL – Capital 1 000 000 FCFA</div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,320px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = { submitted: false };
+  renderVals() {
+    return {
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

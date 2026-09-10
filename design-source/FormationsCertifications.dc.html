@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #ffffff; }
+    a:hover { opacity: 0.72; }
+  </style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;color:#121212" data-screen-label="Formations">
+  <dc-import name="Header" current="formations" hint-size="100%,76px"></dc-import>
+
+  <section style="background:#111113;color:#ffffff;padding:88px 28px 64px" data-screen-label="Hero">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#7ED321;margin-bottom:16px">Formations &amp; Certifications</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;margin:0 0 20px;line-height:1.2">Des programmes certifiants, du fondamental à l'expertise avancée.</h1>
+      <p style="font-size:16px;color:#c5c5c1;margin:0;max-width:620px">Programmes sur mesure en entreprise, en actuariat, data science, finance, intelligence artificielle et protection sociale, avec accompagnement et coaching professionnel.</p>
+    </div>
+  </section>
+
+  <section style="background:#f7f7f5;padding:64px 28px" data-screen-label="Domaines">
+    <div style="max-width:1100px;margin:0 auto;text-align:center">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;margin:0 0 14px">Domaines couverts</h2>
+      <p style="font-size:14px;color:#6a6a64;line-height:1.6;max-width:560px;margin:0 auto 28px">Nos formations couvrent l'ensemble de nos champs d'expertise, du fondamental à l'avancé.</p>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+        <span style="background:#ffffff;border:1px solid #e2e2dd;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:10px 20px;border-radius:20px">Actuariat</span>
+        <span style="background:#ffffff;border:1px solid #e2e2dd;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:10px 20px;border-radius:20px">Finance</span>
+        <span style="background:#ffffff;border:1px solid #e2e2dd;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:10px 20px;border-radius:20px">Protection Sociale</span>
+        <span style="background:#ffffff;border:1px solid #e2e2dd;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:10px 20px;border-radius:20px">Data Science</span>
+        <span style="background:#ffffff;border:1px solid #e2e2dd;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:10px 20px;border-radius:20px">Intelligence Artificielle</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:72px 28px" data-screen-label="Niveaux">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
+      <div style="border:1px solid #eaeae5;border-radius:4px;padding:30px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;color:#7c7c76;text-transform:uppercase;margin-bottom:10px">Base</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px">35h</div>
+        <div style="font-size:14px;color:#6a6a64;line-height:1.5">Fondamentaux et concepts clés</div>
+        <div style="font-size:13px;color:#8a8a86;line-height:1.5;margin-top:10px">Une introduction accessible pour poser les bases essentielles du domaine.</div>
+      </div>
+      <div style="border:1px solid #eaeae5;border-radius:4px;padding:30px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;color:#7c7c76;text-transform:uppercase;margin-bottom:10px">Intermédiaire</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px">70h</div>
+        <div style="font-size:14px;color:#6a6a64;line-height:1.5">Approfondissement et cas pratiques</div>
+        <div style="font-size:13px;color:#8a8a86;line-height:1.5;margin-top:10px">Des mises en situation concrètes pour consolider les acquis sur le terrain.</div>
+      </div>
+      <div style="border:1px solid #eaeae5;border-radius:4px;padding:30px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;color:#7c7c76;text-transform:uppercase;margin-bottom:10px">Maîtrise</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px">150h</div>
+        <div style="font-size:14px;color:#6a6a64;line-height:1.5">Expertise métier avancée</div>
+        <div style="font-size:13px;color:#8a8a86;line-height:1.5;margin-top:10px">Un programme approfondi pour maîtriser les outils et méthodes du métier.</div>
+      </div>
+      <div style="border:1px solid #eaeae5;border-radius:4px;padding:30px;background:#111113;color:#ffffff">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.06em;color:#7ED321;text-transform:uppercase;margin-bottom:10px">Expert</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px">250h</div>
+        <div style="font-size:14px;color:#c5c5c1;line-height:1.5">Certification professionnelle</div>
+        <div style="font-size:13px;color:#a5a5a1;line-height:1.5;margin-top:10px">Cursus complet menant à une certification reconnue, avec projet final encadré.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:72px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px" data-screen-label="Modalites">
+    <div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;margin-bottom:10px">Programmes sur mesure en entreprise</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Formations adaptées aux besoins spécifiques de vos équipes, dans nos locaux ou les vôtres.</div>
+    </div>
+    <div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;margin-bottom:10px">Accompagnement et coaching professionnel</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Un suivi individualisé pour ancrer durablement les compétences acquises.</div>
+    </div>
+  </section>
+
+  <section style="background:#111113;color:#ffffff;padding:72px 28px;text-align:center" data-screen-label="CTA">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin:0 0 24px">Une formation pour votre équipe ?</h2>
+    <a href="Contact.dc.html" style="background:#7ED321;color:#111113;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:14px 30px;border-radius:2px;text-decoration:none">Nous contacter</a>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,320px"></dc-import>
+</div>
+
+</x-dc>
+</body>
+</html>

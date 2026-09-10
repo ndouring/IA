@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #ffffff; }
+    a:hover { opacity: 0.72; }
+  </style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;color:#121212" data-screen-label="References">
+  <dc-import name="Header" current="references" hint-size="100%,76px"></dc-import>
+
+  <section style="background:#111113;color:#ffffff;padding:88px 28px 64px" data-screen-label="Hero">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#7ED321;margin-bottom:16px">Nos références</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;margin:0 0 20px;line-height:1.2">Quelques missions réalisées.</h1>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <span style="border:1px solid #45454a;font-size:13px;padding:6px 14px;border-radius:20px;color:#c5c5c1">Sénégal</span>
+        <span style="border:1px solid #45454a;font-size:13px;padding:6px 14px;border-radius:20px;color:#c5c5c1">Côte d'Ivoire</span>
+        <span style="border:1px solid #45454a;font-size:13px;padding:6px 14px;border-radius:20px;color:#c5c5c1">Afrique de l'Ouest</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px" data-screen-label="Cartes references">
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-css" shape="rect" placeholder="Logo CSS" src="assets/logo-css-t.png" fit="contain"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Caisse de Sécurité Sociale (CSS)</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Étude actuarielle sur la viabilité et la solvabilité du régime géré par la CSS — la première étude actuarielle réalisée par l'institution depuis sa création en 1956.</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-sunu" shape="rect" placeholder="Logo SUNU" src="assets/logo-sunu-t.png" fit="contain"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">GROUP SUNU Assurances</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Formation de 80 managers et directeurs commerciaux — « Du discours commercial à la réalité : décloisonnement, créer une synergie entre commerciaux et techniciens ».</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-bit" shape="rect" placeholder="Logo BIT" src="assets/logo-bit-v3-t.png" fit="contain"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Bureau International du Travail (BIT)</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Faisabilité de l'assurance chômage au Sénégal. Conception des paramètres techniques et financiers du paquet de prestations à court terme du RSPC.</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-foundever" shape="rect" placeholder="Logo FOUNDEVER"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Groupe FOUNDEVER (ex SITEL) — Cabinet Moore International</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Évaluation et comptabilisation des engagements retraite selon IAS 19 / IFRS pour les filiales Sénégal et Côte d'Ivoire.</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-asecna" shape="rect" placeholder="Logo ASECNA" src="assets/logo-asecna-t.png" fit="contain"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Agence pour la Sécurité de la Navigation Aérienne (ASECNA)</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Calcul des provisions relatives aux indemnités de retraite (ICA et AS) selon le référentiel IAS 19 / IFRS.</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-dgpsn" shape="rect" placeholder="Logo DGPSN" src="assets/logo-dgpsn-t.png" fit="contain"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Délégation Générale à la Protection Sociale et à la Solidarité Nationale (DGPSN)</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Étude sur la tarification et la viabilité de l'universalité des allocations familiales au Sénégal.</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-culture" shape="rect" placeholder="Logo Ministère de la Culture"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Ministère de la Culture</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Étude de faisabilité d'un système de protection sociale dédié aux artistes et professionnels de la culture du Sénégal.</div>
+    </div>
+    <div style="border:1px solid #eaeae5;border-radius:4px;padding:28px">
+      <div style="width:100%;height:40px;margin-bottom:18px"><image-slot id="logo-fnr" shape="rect" placeholder="Logo FNR"></image-slot></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px">Fonds National de Retraite (FNR) / Ministère des Finances</div>
+      <div style="font-size:14px;color:#6a6a64;line-height:1.6">Contre-expertise et audit du simulateur actuariel interne. Formation longue durée des cadres de la Direction des Pensions aux techniques d'évaluation et de comptabilisation des régimes de retraite.</div>
+    </div>
+  </section>
+
+  <section style="background:#111113;color:#ffffff;padding:72px 28px;text-align:center" data-screen-label="CTA">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin:0 0 24px">Votre mission pourrait être la prochaine.</h2>
+    <a href="Contact.dc.html" style="background:#7ED321;color:#111113;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:14px 30px;border-radius:2px;text-decoration:none">Parlons-en</a>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,320px"></dc-import>
+</div>
+
+</x-dc>
+</body>
+</html>
