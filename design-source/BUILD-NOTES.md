@@ -242,17 +242,19 @@ champ supplémentaire (id 5) à position et libellé aléatoires, imitant les vr
 champs, masqué au visiteur. Aucun service tiers, aucune clé d'API, aucun captcha
 à résoudre pour l'utilisateur.
 
-Ensuite **Cloudflare Turnstile**, activé sur le formulaire
-(`settings.recaptcha = 1`) avec `captcha-provider = turnstile`, thème clair et
-message d'échec en français. Les deux clés restent **à saisir** dans
-WPForms → Réglages → CAPTCHA.
+Ensuite **Cloudflare Turnstile**, actif sur le formulaire
+(`settings.recaptcha = 1`, `captcha-provider = turnstile`), thème clair et
+message d'échec en français. Widget rendu en mode `explicit` :
+`<div class="wpforms-turnstile" data-sitekey="…" data-action="FormID-210">`.
 
-C'est sans risque de le laisser activé sans clés : `class-process.php` sort
-avant toute validation quand `site_key` ou `secret_key` est vide
-(« Skip captcha processing if a site key or secret key is empty »). Le
-formulaire fonctionne donc normalement, le captcha ne s'affiche simplement pas,
-et il s'active tout seul dès que les clés sont renseignées — le pot de miel
-protège le formulaire entre-temps.
+Les clés vivent dans l'option `wpforms_settings`
+(`turnstile-site-key` / `turnstile-secret-key`) et **ne sont pas versionnées
+ici**. La clé de site est publique (visible dans le HTML de la page Contact) ;
+la clé secrète ne sort jamais côté navigateur — vérifié.
+
+À noter pour la suite : `class-process.php` sort avant toute validation si
+`site_key` ou `secret_key` est vide. Vider une clé désactive donc proprement le
+captcha sans casser le formulaire, et le pot de miel continue de le protéger.
 
 **Style** : entièrement réglé sur le widget Elementor, qui émet des variables CSS
 scopées à l'élément (`--wpforms-*`). Aucun CSS écrit. Attention : les
