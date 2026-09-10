@@ -158,7 +158,7 @@ natifs d'Astra, pilotés par l'option `astra-settings` et quelques `theme_mod`.
 | `header-button1-border-radius-fields` | 2 px — **pas** `header-button1-border-radius`, qui existe mais n'est pas lue ; le défaut d'Astra est 40 px (pilule) |
 | `section-hb-button-1-padding` | 11 / 22 px — **pas** `header-button1-padding`, qui existe mais n'est pas lue ; sans elle, le bouton hérite du 15 / 30 global |
 | `site-content-width` | 1240 |
-| `header-html-1` | `[gtranslate]` — sélecteur FR / EN, placé entre le menu et le bouton |
+| `header-html-1` | `[gtranslate]` — sélecteur FR / EN. Desktop : entre le menu et le bouton. Mobile : dans `header-mobile-items`, à gauche du `mobile-trigger` |
 | `header-html-1color` / `1link-color` / `1link-h-color` | `#121212` / `#B5B5B0` / `#121212` — noter l'absence de tiret avant `color` dans ces clés Astra |
 
 ### Pied de page
@@ -196,6 +196,9 @@ réglages Astra et par les classes / variables globales Elementor.
    du lien.
 2. **En-tête collant** — `position: sticky` sur `#masthead`, avec le décalage
    de 32 px quand la barre d'admin est affichée.
+3. **Sélecteur FR / EN en miniature sur mobile** — 12 px, collé au hamburger.
+   Le composant HTML d'Astra (`html-1`) n'expose que des couleurs, aucune
+   typographie.
 
 Pour revenir à un site sans CSS écrit à la main, il suffit de vider ce champ :
 le menu perd son trait et l'en-tête cesse d'être collant, rien d'autre ne bouge.
