@@ -56,12 +56,14 @@ contact `field-label` `contact-value` `legal-note` `value-label`
 Variantes responsives via les breakpoints Elementor : tablette `max-width:1024px`,
 mobile `max-width:767px`.
 
-### Trois pièges rencontrés
+### Les pièges rencontrés
 
 1. Le style de base `.e-div-block-base` impose `padding:10px` à **tout**
    `e-div-block`. Chaque classe de mise en page déclare donc son padding
    explicitement (0 le cas échéant), sinon le hero et les grilles se retrouvent
-   encadrés de 10px.
+   encadrés de 10px. Même piège sur `.e-button-base`, qui impose un fond bleu
+   `#375EFB` : `btn` déclare `background: transparent`, et chaque variante de
+   bouton déclare le sien. Un bouton sans fond explicite sort en bleu Elementor.
 2. Astra applique `h1..h6{color:...}` (spécificité 0,0,1). Les classes de titre
    déclarent leur couleur explicitement — `.elementor .h2-section` (0,2,0)
    l'emporte.
