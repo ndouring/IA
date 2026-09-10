@@ -237,10 +237,22 @@ pas écrite en dur — si le compte admin change, la notification suit.
 Expéditeur `contact@deprice.sn` (domaine du site, pour ne pas casser SPF),
 `Reply-To` sur l'e-mail du visiteur.
 
-**Anti-spam** : `antispam_v3`, le pot de miel moderne de WPForms. Il injecte un
+**Anti-spam** : deux couches. D'abord `antispam_v3`, le pot de miel moderne de WPForms. Il injecte un
 champ supplémentaire (id 5) à position et libellé aléatoires, imitant les vrais
 champs, masqué au visiteur. Aucun service tiers, aucune clé d'API, aucun captcha
 à résoudre pour l'utilisateur.
+
+Ensuite **Cloudflare Turnstile**, activé sur le formulaire
+(`settings.recaptcha = 1`) avec `captcha-provider = turnstile`, thème clair et
+message d'échec en français. Les deux clés restent **à saisir** dans
+WPForms → Réglages → CAPTCHA.
+
+C'est sans risque de le laisser activé sans clés : `class-process.php` sort
+avant toute validation quand `site_key` ou `secret_key` est vide
+(« Skip captcha processing if a site key or secret key is empty »). Le
+formulaire fonctionne donc normalement, le captcha ne s'affiche simplement pas,
+et il s'active tout seul dès que les clés sont renseignées — le pot de miel
+protège le formulaire entre-temps.
 
 **Style** : entièrement réglé sur le widget Elementor, qui émet des variables CSS
 scopées à l'élément (`--wpforms-*`). Aucun CSS écrit. Attention : les
