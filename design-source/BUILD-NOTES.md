@@ -199,6 +199,11 @@ réglages Astra et par les classes / variables globales Elementor.
 3. **Sélecteur FR / EN en miniature sur mobile** — 12 px, collé au hamburger.
    Le composant HTML d'Astra (`html-1`) n'expose que des couleurs, aucune
    typographie.
+4. **Accroche du hero sur mobile** — le `<br>` de la maquette, pensé pour le
+   desktop, produisait trois lignes bancales sur mobile. Il est masqué sous
+   767 px et le texte est équilibré avec `text-wrap: balance` ; la taille
+   (15 px) reste pilotée par la classe globale `hero-lead`. Le saut est
+   conservé tel quel en desktop et en tablette.
 
 Pour revenir à un site sans CSS écrit à la main, il suffit de vider ce champ :
 le menu perd son trait et l'en-tête cesse d'être collant, rien d'autre ne bouge.
