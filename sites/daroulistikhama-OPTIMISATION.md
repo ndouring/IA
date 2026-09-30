@@ -87,8 +87,7 @@ place. Sauvegarde : `.htaccess.bak-perf`.
 ## SEO
 
 - **Nom du site** ramené de 122 caractères à `Daroul Istikhama`. Le titre de la
-  page d'accueil faisait 133 caractères, Google en affiche environ 60. Le nom
-  et la description contenaient aussi un `&amp;` doublement échappé. Le titre
+  page d'accueil faisait 133 caractères, Google en affiche environ 60. Le titre
   et le slogan sont masqués dans l'en-tête (le logo les remplace), donc rien ne
   change à l'écran.
 - **Titre et méta-description sur les huit pages**, écrits à partir du contenu
